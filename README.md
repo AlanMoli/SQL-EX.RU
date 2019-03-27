@@ -38,3 +38,27 @@ SELECT model, speed, hd
 FROM PC 
 WHERE price < 600 AND cd IN ('12X', '24X')
 ```
+
+### Exercise: 6
+For each maker producing laptops with a hard drive capacity of 10 Gb or higher, find the speed of such laptops. Result set: maker, speed.
+```SQL
+SELECT DISTINCT maker, speed
+FROM Product, Laptop
+WHERE Product.model = Laptop.model AND hd >= 10
+```
+
+### Exercise: 7
+Get the models and prices for all commercially available products (of any type) produced by maker B.
+```SQL
+SELECT Product.model, price
+FROM Product, PC
+WHERE maker = 'B'AND Product.model = PC.model
+UNION
+SELECT Product.model, price
+FROM Product, Laptop
+WHERE maker = 'B'AND Product.model = Laptop.model
+UNION
+SELECT Product.model, price
+FROM Product, Printer
+WHERE maker = 'B'AND Product.model = Printer.model
+```
