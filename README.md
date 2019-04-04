@@ -62,3 +62,14 @@ SELECT Product.model, price
 FROM Product, Printer
 WHERE maker = 'B'AND Product.model = Printer.model
 ```
+
+### Exercise: 8
+Find the makers producing PCs but not laptops.
+```SQL
+SELECT DISTINCT maker 
+FROM Product 
+WHERE type = 'PC' AND 
+ maker NOT IN (SELECT DISTINCT maker
+               FROM Product
+               WHERE type = 'Laptop')
+```
