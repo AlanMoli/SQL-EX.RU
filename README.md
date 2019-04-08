@@ -73,3 +73,21 @@ WHERE type = 'PC' AND
                FROM Product
                WHERE type = 'Laptop')
 ```
+
+### Exercise: 9
+Find the makers of PCs with a processor speed of 450 MHz or more. Result set: maker.
+```SQL
+SELECT DISTINCT maker
+FROM Product, PC
+WHERE Product.model = PC.model 
+ AND speed >= 450
+```
+
+### Exercise: 10
+Find the printer models having the highest price. Result set: model, price.
+```SQL
+SELECT model, price
+FROM Printer
+WHERE price = (SELECT MAX(price)
+               FROM printer)
+```
