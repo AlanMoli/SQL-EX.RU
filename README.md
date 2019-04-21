@@ -116,7 +116,7 @@ WHERE Product.model = PC.model AND maker = 'A'
 ```
 
 ### Exercise: 14
-Get the makers who produce only one product type and more than one model. Output: maker, type.
+Get the makers who produce only one product type and more than one model. Output: maker, type.  
 方法一：
 ```SQL
 SELECT maker, MAX/MIN(type) AS type
