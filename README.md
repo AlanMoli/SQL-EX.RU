@@ -91,3 +91,46 @@ FROM Printer
 WHERE price = (SELECT MAX(price)
                FROM printer)
 ```
+
+### Exercise: 11
+Find out the average speed of PCs.
+```SQL
+SELECT AVG(speed)
+FROM PC
+```
+
+### Exercise: 12
+Find out the average speed of the laptops priced over $1000.
+```SQL
+SELECT AVG(speed)
+FROM Laptop
+WHERE price > 1000
+```
+
+### Exercise: 13
+Find out the average speed of the PCs produced by maker A.
+```SQL
+SELECT AVG(speed)
+FROM Product,PC
+WHERE Product.model = PC.model AND maker = 'A'
+```
+
+### Exercise: 14
+Get the makers who produce only one product type and more than one model. Output: maker, type.
+方法一：
+```SQL
+SELECT maker, MAX/MIN(type) AS type
+FROM Product
+GROUP BY maker
+HAVING COUNT(DISTINCT type) = 1 AND COUNT(model) > 1
+```
+方法二：
+```SQL
+SELECT DISTINCT maker, type
+FROM Product
+WHERE maker IN (SELECT maker
+                FROM Product
+                GROUP BY maker
+                HAVING COUNT(DISTINCT type) = 1 
+                       AND COUNT(model) > 1)
+```
